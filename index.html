@@ -106,7 +106,9 @@
       (function() {
         var Balloon, balloons, options, sketch, sortBySize;
 
-        sketch = Sketch.create();
+        sketch = Sketch.create({
+  container: document.body
+});
 
         balloons = [];
 
