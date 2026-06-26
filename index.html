@@ -1,218 +1,223 @@
-<html>
-    <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110093476-1"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sketch.js/1.0/sketch.min.js"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-110093476-1');
-    </script>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700&display=swap" rel="stylesheet">
-        <title>Princess Dave</title>
-        <style>
-            html {
-                font-size: 24px;
-                font-family: 'Manrope', Arial, sans-serif;
-                line-height: 1.6;
-                -webkit-font-smoothing: antialiased;
-                font-weight: 700;
-            }
-		canvas {
-			display: block;
-		}
-            @-webkit-keyframes PrincessDave {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@-moz-keyframes PrincessDave {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@keyframes PrincessDave {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-            body {
-                text-align: center;
-                background: #0282ca;
-                color: #fff;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                user-select: none;
-                background: linear-gradient(230deg, #04c9ea, #ff08d5);
-background-size: 400% 400%;
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Princess Dave</title>
 
--webkit-animation: PrincessDave 30s infinite;
--moz-animation: PrincessDave 30s infinite;
-animation: PrincessDave 30s infinite;
-            }
-            h1 {
-                margin-top: 0;
-                font-size: 1.3rem;
-                line-height: 1.2;
-            }
-            p {
-                margin-top: 0;   
-            }
-            a {
-                color: floralwhite;
-                text-decoration: none;
-                display: block;
-		text-shadow: 1px 1px 1px rgba(0,0,0,.1);
-                font-size: 1rem;
-            }
-            a:hover {
-                text-decoration: underline;
-            }
-            /* a::after {
-                content: " »";
-            } */
-            .coming-soon {
-                margin: 0 auto;
-                width: 760px;
-                padding: 1rem;
-		position: fixed;
-            }
-            .disclaimer {
-                color: rgba(255,255,255,.5);
-                font-size: .5rem;
-            }
-        </style>
-    </head>
-    <body oncontextmenu="return false;">
-        
-	    <script>
-		    (function() {
-  var Balloon, balloons, options, sketch, sortBySize;
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110093476-1"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sketch.js/1.0/sketch.min.js"></script>
 
-  sketch = Sketch.create();
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-110093476-1');
+  </script>
 
-  balloons = [];
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700&display=swap" rel="stylesheet">
 
-  options = {
-    amount: 40,
-    sizeMin: 1,
-    sizeMax: 10
-  };
-
-  sortBySize = function(a, b) {
-    if (a.size < b.size) {
-      return 1;
+  <style>
+    html {
+      font-size: 24px;
+      font-family: 'Manrope', Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      font-weight: 700;
+      height: 100%;
     }
-    if (a.size > b.size) {
-      return -1;
+
+    body {
+      min-height: 100%;
+      margin: 0;
+      text-align: center;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      background: linear-gradient(230deg, #04c9ea, #ff08d5);
+      background-size: 400% 400%;
+      animation: PrincessDave 30s infinite;
+      overflow: hidden;
     }
-    return 0;
-  };
 
-  Balloon = function(config) {
-    this.x = config.x;
-    this.y = config.y;
-    this.vx = 0;
-    this.vy = 0;
-    return this.size = config.size;
-  };
-
-  Balloon.prototype.update = function() {
-    var dt;
-    dt = sketch.dt <= 0 ? .001 : sketch.dt / 16;
-    this.vx += this.size * (random(-1, 1) / 1000);
-    this.x += this.vx * dt;
-    this.vy -= this.size / 2000;
-    this.y += this.vy * dt;
-    if (this.y <= this.size * -0.9) {
-      this.size = random(options.sizeMin, options.sizeMax);
-      this.x = random(sketch.width);
-      this.vx = 0;
-      this.y = sketch.height + (this.size * 10.2);
-      return this.vy = 0;
+    canvas {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 1;
     }
-  };
 
-  Balloon.prototype.render = function() {
-    sketch.save();
-    sketch.translate(this.x, this.y);
-    sketch.beginPath();
-    sketch.moveTo(this.size * -0.5, 0);
-    sketch.bezierCurveTo(this.size * -5, this.size * -1, this.size * -6, this.size * -10, 0, this.size * -10);
-    sketch.bezierCurveTo(this.size * 6, this.size * -10, this.size * 5, this.size * -1, this.size * 0.5, 0);
-    sketch.lineTo(this.size * 0.8, this.size * 0.7);
-    sketch.lineTo(this.size * -0.8, this.size * 0.7);
-    sketch.closePath();
-    sketch.fillStyle = 'hsla( 0, 0%, 100%, .25 )';
-    sketch.fill();
-    sketch.lineWidth = 1;
-    sketch.stroke();
-    sketch.restore();
-    sketch.save();
-    sketch.translate(this.x - (this.size * 1.75), this.y - (this.size * 7.5));
-    sketch.rotate(PI / 4);
-    sketch.scale(1, 2);
-    sketch.beginPath();
-    sketch.arc(0, 0, this.size * 0.5, 0, TWO_PI);
-    sketch.fillStyle = 'hsla( 0, 0%, 100%, .8 )';
-    sketch.fill();
-    return sketch.restore();
-  };
-
-  sketch.resize = function() {
-    sketch.lineJoin = 'round';
-    return sketch.strokeStyle = 'hsla( 0, 0%, 100%, 1 )';
-  };
-
-  sketch.setup = function() {
-    var i, _results;
-    sketch.lineJoin = 'round';
-    sketch.strokeStyle = 'hsla( 0, 0%, 100%, .75 )';
-    i = options.amount;
-    _results = [];
-    while (i--) {
-      _results.push(balloons.push(new Balloon({
-        x: random(sketch.width),
-        y: random(sketch.height),
-        size: random(options.sizeMin, options.sizeMax)
-      })));
+    @keyframes PrincessDave {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    return _results;
-  };
 
-  sketch.clear = function() {
-    return sketch.clearRect(0, 0, sketch.width, sketch.height);
-  };
-
-  sketch.update = function() {
-    var i, _results;
-    balloons.sort(sortBySize);
-    i = balloons.length;
-    _results = [];
-    while (i--) {
-      _results.push(balloons[i].update(i));
+    h1 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      line-height: 1.2;
     }
-    return _results;
-  };
 
-  sketch.draw = function() {
-    var i, _results;
-    i = balloons.length;
-    _results = [];
-    while (i--) {
-      _results.push(balloons[i].render(i));
+    p {
+      margin-top: 0;
     }
-    return _results;
-  };
 
-}).call(this);
-	    </script>
-	   <div class="coming-soon">
-            <p><a href="mailto:the.princess.dave@gmail.com">the.princess.dave@gmail.com</a></p>
-        </div>
-    </body>
+    a {
+      color: floralwhite;
+      text-decoration: none;
+      display: block;
+      text-shadow: 1px 1px 1px rgba(0,0,0,.1);
+      font-size: 1rem;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .coming-soon {
+      margin: 0 auto;
+      width: 760px;
+      max-width: calc(100% - 2rem);
+      padding: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .disclaimer {
+      color: rgba(255,255,255,.5);
+      font-size: .5rem;
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false;">
+  <div class="coming-soon">
+    <p><a href="mailto:the.princess.dave@gmail.com">the.princess.dave@gmail.com</a></p>
+  </div>
+
+  <script>
+    window.addEventListener('load', function () {
+      (function() {
+        var Balloon, balloons, options, sketch, sortBySize;
+
+        sketch = Sketch.create();
+
+        balloons = [];
+
+        options = {
+          amount: 40,
+          sizeMin: 1,
+          sizeMax: 10
+        };
+
+        sortBySize = function(a, b) {
+          if (a.size < b.size) return 1;
+          if (a.size > b.size) return -1;
+          return 0;
+        };
+
+        Balloon = function(config) {
+          this.x = config.x;
+          this.y = config.y;
+          this.vx = 0;
+          this.vy = 0;
+          this.size = config.size;
+        };
+
+        Balloon.prototype.update = function() {
+          var dt;
+          dt = sketch.dt <= 0 ? 0.001 : sketch.dt / 16;
+          this.vx += this.size * (random(-1, 1) / 1000);
+          this.x += this.vx * dt;
+          this.vy -= this.size / 2000;
+          this.y += this.vy * dt;
+
+          if (this.y <= this.size * -0.9) {
+            this.size = random(options.sizeMin, options.sizeMax);
+            this.x = random(sketch.width);
+            this.vx = 0;
+            this.y = sketch.height + (this.size * 10.2);
+            this.vy = 0;
+          }
+        };
+
+        Balloon.prototype.render = function() {
+          sketch.save();
+          sketch.translate(this.x, this.y);
+          sketch.beginPath();
+          sketch.moveTo(this.size * -0.5, 0);
+          sketch.bezierCurveTo(this.size * -5, this.size * -1, this.size * -6, this.size * -10, 0, this.size * -10);
+          sketch.bezierCurveTo(this.size * 6, this.size * -10, this.size * 5, this.size * -1, this.size * 0.5, 0);
+          sketch.lineTo(this.size * 0.8, this.size * 0.7);
+          sketch.lineTo(this.size * -0.8, this.size * 0.7);
+          sketch.closePath();
+          sketch.fillStyle = 'hsla(0, 0%, 100%, .25)';
+          sketch.fill();
+          sketch.lineWidth = 1;
+          sketch.stroke();
+          sketch.restore();
+
+          sketch.save();
+          sketch.translate(this.x - (this.size * 1.75), this.y - (this.size * 7.5));
+          sketch.rotate(PI / 4);
+          sketch.scale(1, 2);
+          sketch.beginPath();
+          sketch.arc(0, 0, this.size * 0.5, 0, TWO_PI);
+          sketch.fillStyle = 'hsla(0, 0%, 100%, .8)';
+          sketch.fill();
+          sketch.restore();
+        };
+
+        sketch.resize = function() {
+          sketch.lineJoin = 'round';
+          sketch.strokeStyle = 'hsla(0, 0%, 100%, 1)';
+        };
+
+        sketch.setup = function() {
+          var i;
+          sketch.lineJoin = 'round';
+          sketch.strokeStyle = 'hsla(0, 0%, 100%, .75)';
+          i = options.amount;
+
+          while (i--) {
+            balloons.push(new Balloon({
+              x: random(sketch.width),
+              y: random(sketch.height),
+              size: random(options.sizeMin, options.sizeMax)
+            }));
+          }
+        };
+
+        sketch.clear = function() {
+          sketch.clearRect(0, 0, sketch.width, sketch.height);
+        };
+
+        sketch.update = function() {
+          var i;
+          balloons.sort(sortBySize);
+          i = balloons.length;
+
+          while (i--) {
+            balloons[i].update();
+          }
+        };
+
+        sketch.draw = function() {
+          var i;
+          i = balloons.length;
+
+          while (i--) {
+            balloons[i].render();
+          }
+        };
+      }).call(this);
+    });
+  </script>
+</body>
 </html>
